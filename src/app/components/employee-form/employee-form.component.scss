@@ -1,0 +1,136 @@
+.employee-form-container {
+  background: #fff;
+
+  h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: 15px;
+  }
+
+  .employee-form {
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      margin-left: 15px;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        flex-basis: calc(50% - 10px);
+        margin-right: 50px;
+
+        label {
+          margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        .skill-experience {
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          width: 100%;
+        }
+
+        .skill-group {
+          display: flex;
+          align-items: center;
+
+          .skill-name {
+            flex-grow: 1;
+            margin-right: 10px;
+            width: 50%;
+          }
+          .skill-input{
+            width:40%;
+            margin-right: 15px;
+          }
+
+          .skill-experience {
+            width: auto;
+            flex-grow: 2;
+          }
+        }
+      }
+    }
+
+    .add-skill-button {
+      background-color: #28a745; 
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      margin: 0;
+      cursor: pointer;
+      border-radius: 4px;
+      align-self: flex-start;
+
+      &:hover {
+        background-color: darken(#28a745, 10%);
+      }
+    }
+
+    .radio-group {
+      display: flex;
+      align-items: center;
+
+      input[type="radio"] {
+        margin-right: 5px;
+      }
+
+      label {
+        margin-right: 20px;
+      }
+    }
+
+    .submit-button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: auto;
+      align-self: flex-start;
+      margin-left: 15px;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+  .delete-skill-button {
+    background-color: #d83d4c;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px; 
+    margin-left: 15px;
+  }
+  .addskill-container
+  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+  }
+  label {
+    margin-right: 10px; /* Adjust as needed */
+  }
+}
+
+@media (max-width: 768px) {
+  .employee-form-container .employee-form .form-row {
+    flex-direction: column;
+
+    .form-group {
+      flex-basis: 100%;
+    }
+
+    .add-skill-button {
+      align-self: center;
+    }
+  }
+}

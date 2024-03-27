@@ -1,0 +1,35 @@
+/* delete-confirmation-dialog.component.scss */
+
+/* Dialog content styling */
+mat-dialog-content {
+    font-size: 16px; /* Adjust font size as needed */
+    color: #333; /* Dark color for text for readability */
+    margin-bottom: 20px; /* Space between content and actions */
+  }
+  
+  /* Dialog actions styling */
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px; /* Ensure there's space above the action buttons */
+  
+    button {
+      margin-left: 8px; /* Space between buttons */
+    }
+  }
+  
+  /* Cancel button styling */
+  button[cancel-btn] {
+    color: #757575; /* Neutral color for cancel button */
+  }
+  
+  /* Delete (warn) button styling */
+  button[warn-btn] {
+    color: #fff; /* White text for contrast */
+    background-color: #f44336; /* Red background for warning effect */
+    &:hover {
+      background-color: darken(#f44336, 10%); /* Slightly darker on hover for feedback */
+    }
+  }
+  

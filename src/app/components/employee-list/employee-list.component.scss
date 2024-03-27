@@ -1,0 +1,64 @@
+.employee-list-container {
+  padding: 20px;
+
+  .button-container {
+    margin-bottom: 20px; // Space between button and table
+    text-align: right; // Aligns the 'Add Employee' button to the right
+
+    button {
+      background-color: #4CAF50; // Green background color
+      color: white; // White text color
+      padding: 10px 20px; // Padding inside the button
+      margin: 0; // No margin
+      border: none; // No border
+      border-radius: 4px; // Rounded corners
+      cursor: pointer; // Cursor changes to pointer when hovering over the button
+      font-size: 16px; // Font size for the button text
+
+      &:hover {
+        background-color: #45a049; // Darker green color on hover
+      }
+    }
+  }
+
+  .employee-table {
+    width: 100%; // Full width of the container
+    border-collapse: collapse; // Collapses borders
+
+    thead {
+      tr {
+        th {
+          background-color: #f5f5f5; // Light grey background for header
+          color: #333; // Dark grey text color for header
+          font-weight: bold; // Bold font weight for header text
+          text-align: left; // Align text to the left
+          padding: 12px; // Padding inside header cells
+          border-bottom: 2px solid #ccc; // Bottom border for header cells
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 12px; // Padding inside cells
+          text-align: left; // Align text to the left
+          // Remove borders from td here
+        }
+
+        &:nth-child(even) {
+          background-color: #f9f9f9; // Zebra striping for rows
+        }
+      }
+    }
+
+    mat-icon {
+      cursor: pointer; // Cursor changes to pointer when hovering over the icon
+      color: #757575; // Grey color for icons
+      margin-right: 12px; // Space between icons and any following text
+      &:hover {
+        color: #333; // Darker grey color on hover
+      }
+    }
+  }
+}

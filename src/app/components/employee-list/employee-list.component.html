@@ -1,0 +1,50 @@
+<!-- Container for the entire employee list and actions -->
+<div class="employee-list-container">
+  <!-- Container for action buttons -->
+  <div class="button-container">
+    <!-- Button to add a new employee. Calls the addEmployee() method on click -->
+    <button (click)="addEmployee()">Add Employee</button>
+  </div>
+
+  <!-- Table for displaying employee details -->
+  <table class="employee-table">
+    <thead>
+      <!-- Table header defining the columns -->
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Gender</th>
+        <th>Skills</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Iterates over the employees array to create a table row for each employee -->
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.id }}</td> <!-- Displays the employee's id -->
+        <td>{{ employee.name }}</td> <!-- Displays the employee's name -->
+        <td>{{ employee.email }}</td> <!-- Displays the employee's email -->
+        <td>{{ employee.contactNumber }}</td> <!-- Displays the employee's contact number -->
+        <td>{{ employee.gender }}</td> <!-- Displays the employee's gender -->
+        <td>
+          <!-- List of skills for each employee -->
+          <ul>
+            <!-- Iterates over the skills array of each employee to display each skill and its experience -->
+            <li *ngFor="let skill of employee.skills">{{ skill.name }} (Exp. {{ skill.experience }} years)</li>
+          </ul>
+        </td>
+        <td>
+          <!-- Icons for editing and deleting an employee, calling the respective methods on click -->
+          <span (click)="editEmployee(employee)">
+            <mat-icon>edit</mat-icon> <!-- Material icon for edit action -->
+          </span>
+          <span (click)="deleteEmployee(employee)">
+            <mat-icon>delete</mat-icon> <!-- Material icon for delete action -->
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

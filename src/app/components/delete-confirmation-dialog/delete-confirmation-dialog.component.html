@@ -1,0 +1,19 @@
+<!-- Content area of the dialog -->
+<mat-dialog-content>
+  <!-- Displays a confirmation message, incorporating the name of the item (employee) to be deleted -->
+  Are you sure you want to delete {{ data.name }}?
+</mat-dialog-content>
+
+<!-- Action buttons area of the dialog -->
+<mat-dialog-actions align="end">
+  <!-- Cancel button: Closes the dialog without taking any action. 
+       [mat-dialog-close]="false" indicates that the dialog is closed with a 'false' result, meaning "do not proceed with delete". -->
+  <button mat-button [mat-dialog-close]="false" cancel-btn>Cancel</button>
+  
+  <!-- Delete button: Closes the dialog and indicates a confirmation to proceed with the deletion.
+       color="warn" applies a theme color that usually indicates a warning or dangerous action, making it visually distinct.
+       [mat-dialog-close]="true" means the dialog closes with a 'true' result, indicating "proceed with delete". -->
+  <button mat-button color="warn" [mat-dialog-close]="true" warn-btn>Delete</button>
+</mat-dialog-actions>
+
+  

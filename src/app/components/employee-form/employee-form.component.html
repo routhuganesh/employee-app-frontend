@@ -1,0 +1,78 @@
+<!-- Container for the employee form -->
+<div class="employee-form-container">
+  <h2>Add Employee</h2>
+  <!-- Form declaration with Angular reactive form directives -->
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+    <!-- Section for Employee ID and Name input fields -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="id">Employee Id:</label>
+        <!-- Input for Employee ID with formControlName directive linking it to the employeeForm group -->
+        <input type="text" id="id" formControlName="id" placeholder="Enter Id" />
+      </div>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <!-- Input for Employee Name -->
+        <input type="text" id="name" formControlName="name" placeholder="Enter name" />
+      </div>
+    </div>
+
+    <!-- Section for Contact Number and Email input fields -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="contactNumber">Contact number:</label>
+        <!-- Input for Contact Number -->
+        <input type="text" id="contactNumber" formControlName="contactNumber" placeholder="Enter contact number" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <!-- Input for Email -->
+        <input type="email" id="email" formControlName="email" placeholder="Enter email" />
+      </div>
+    </div>
+
+    <!-- Section for Skills and Gender input fields -->
+    <div class="form-row">
+      <!-- Dynamic Skills entries section -->
+      <div class="form-group" formArrayName="skills">
+        <!-- Button to add new skill inputs -->
+        <span class="addskill-container">
+          <label>Skills:</label>
+          <button type="button" class="add-skill-button" (click)="addSkill()">Add skill +</button>
+        </span>
+        <!-- Iterates over the skills form array and creates input fields for each skill -->
+        <div *ngFor="let skill of skills().controls; let i = index" class="skill-group" [formGroupName]="i">
+          <input class="skill-input" type="text" formControlName="name" placeholder="Enter skill name" />
+          <!-- Dropdown for selecting skill experience -->
+          <select formControlName="experience" class="skill-experience">
+            <option value="" disabled selected>Select experience</option>
+            <!-- Options for experience years -->
+            <option value="0">0 years</option>
+            <option value="1">1 year</option>
+            <option value="2">2 years</option>
+            <option value="3">3 years</option>
+            <option value="4">4 years</option>
+            <!-- More options omitted for brevity -->
+          </select>
+          <!-- Button to delete a skill entry -->
+          <button type="button" class="delete-skill-button" (click)="deleteSkill(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <!-- Gender selection section -->
+      <div class="form-group gender-group">
+        <label>Gender:</label>
+        <div class="radio-group">
+          <!-- Radio buttons for gender selection -->
+          <input type="radio" id="male" formControlName="gender" value="Male" />
+          <label for="male">Male</label>
+          <input type="radio" id="female" formControlName="gender" value="Female" />
+          <label for="female">Female</label>
+        </div>
+      </div>
+    </div>
+    <!-- Submit button, disabled if the form is invalid -->
+    <button type="submit" class="submit-button" [disabled]="!employeeForm.valid">Submit</button>
+  </form>
+</div>
