@@ -1,35 +1,65 @@
-/* delete-confirmation-dialog.component.scss */
-
-/* Dialog content styling */
 mat-dialog-content {
-    font-size: 16px; /* Adjust font size as needed */
-    color: #333; /* Dark color for text for readability */
-    margin-bottom: 20px; /* Space between content and actions */
-  }
-  
-  /* Dialog actions styling */
-  mat-dialog-actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 20px; /* Ensure there's space above the action buttons */
-  
-    button {
-      margin-left: 8px; /* Space between buttons */
-    }
-  }
-  
-  /* Cancel button styling */
-  button[cancel-btn] {
-    color: #757575; /* Neutral color for cancel button */
-  }
-  
-  /* Delete (warn) button styling */
-  button[warn-btn] {
-    color: #fff; /* White text for contrast */
-    background-color: #f44336; /* Red background for warning effect */
-    &:hover {
-      background-color: darken(#f44336, 10%); /* Slightly darker on hover for feedback */
-    }
-  }
-  
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+mat-dialog-actions button {
+  margin-left: 8px;
+}
+
+button[mat-dialog-close="false"] {
+  color: #333;
+}
+
+button[color="warn"] {
+  color: #fff;
+  background-color: #f44336;
+}
+
+button[color="warn"]:hover {
+  background-color: darken(#f44336, 10%);
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dialog-header h2 {
+  margin: 0;
+}
+
+.dialog-header .close-btn {
+  color: #757575;
+  background-color: transparent;
+  outline: none;
+  border: None;
+}
+
+.centered-content {
+  text-align: center;
+}
+.rounded-button {
+  border-radius: 4px;
+}
+.separator-line {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+::ng-deep .dialog-header .mat-icon {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}

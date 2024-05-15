@@ -2,18 +2,66 @@
 <div class="employee-form-container">
   <h2>Add Employee</h2>
   <!-- Form declaration with Angular reactive form directives -->
-  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+  <form
+    [formGroup]="employeeForm"
+    (ngSubmit)="onSubmit()"
+    class="employee-form"
+  >
     <!-- Section for Employee ID and Name input fields -->
     <div class="form-row">
       <div class="form-group">
         <label for="id">Employee Id:</label>
         <!-- Input for Employee ID with formControlName directive linking it to the employeeForm group -->
-        <input type="text" id="id" formControlName="id" placeholder="Enter Id" />
+        <input
+          type="text"
+          id="id"
+          formControlName="id"
+          placeholder="Enter Id"
+        />
+        <div
+          *ngIf="employeeForm?.get('id')?.errors?.['duplicate']"
+          class="error-message"
+        >
+          An employee with this ID already exists
+        </div>
+        <div
+          *ngIf="
+            employeeForm.get('id') &&
+            (employeeForm.get('id')!.dirty ||
+              employeeForm.get('id')!.touched)
+          "
+        >
+          <div
+            *ngIf="employeeForm.get('id')!.errors?.['required']"
+            class="error-message"
+          >
+            Id is required.
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="name">Name:</label>
         <!-- Input for Employee Name -->
-        <input type="text" id="name" formControlName="name" placeholder="Enter name" />
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          placeholder="Enter name"
+        />
+        <div
+          *ngIf="
+            employeeForm.get('name') &&
+            (employeeForm.get('name')!.dirty ||
+              employeeForm.get('name')!.touched)
+          "
+        >
+          <div
+            *ngIf="employeeForm.get('name')!.errors?.['required']"
+            class="error-message"
+          >
+            Name is required.
+          </div>
+        </div>
       </div>
     </div>
 
@@ -22,12 +70,62 @@
       <div class="form-group">
         <label for="contactNumber">Contact number:</label>
         <!-- Input for Contact Number -->
-        <input type="text" id="contactNumber" formControlName="contactNumber" placeholder="Enter contact number" />
+        <input
+          type="text"
+          id="contactNumber"
+          formControlName="contactNumber"
+          placeholder="Enter contact number"
+        />
+        <div
+          *ngIf="
+            employeeForm.get('contactNumber') &&
+            (employeeForm.get('contactNumber')!.dirty ||
+              employeeForm.get('contactNumber')!.touched)
+          "
+        >
+          <div
+            *ngIf="employeeForm.get('contactNumber')!.errors?.['required']"
+            class="error-message"
+          >
+            Contact number is required.
+          </div>
+          <div
+            *ngIf="employeeForm.get('contactNumber')!.errors?.['pattern']"
+            class="error-message"
+          >
+            Invalid contact number format.
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
         <!-- Input for Email -->
-        <input type="email" id="email" formControlName="email" placeholder="Enter email" />
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Enter email"
+        />
+        <div
+          *ngIf="
+            employeeForm.get('email') &&
+            (employeeForm.get('email')!.dirty ||
+              employeeForm.get('email')!.touched)
+          "
+        >
+          <div
+            *ngIf="employeeForm.get('email')!.errors?.['required']"
+            class="error-message"
+          >
+            Email is required.
+          </div>
+          <div
+            *ngIf="employeeForm.get('email')!.errors?.['email']"
+            class="error-message"
+          >
+            Invalid email format.
+          </div>
+        </div>
       </div>
     </div>
 
@@ -38,11 +136,27 @@
         <!-- Button to add new skill inputs -->
         <span class="addskill-container">
           <label>Skills:</label>
-          <button type="button" class="add-skill-button" (click)="addSkill()">Add skill +</button>
+          <button type="button" class="add-skill-button" (click)="addSkill()">
+            Add skill +
+          </button>
         </span>
         <!-- Iterates over the skills form array and creates input fields for each skill -->
-        <div *ngFor="let skill of skills().controls; let i = index" class="skill-group" [formGroupName]="i">
-          <input class="skill-input" type="text" formControlName="name" placeholder="Enter skill name" />
+        <div
+          *ngFor="let skill of skills().controls; let i = index"
+          class="skill-group"
+          [formGroupName]="i"
+        >
+          <input
+            class="skill-input"
+            type="text"
+            formControlName="name"
+            placeholder="Enter skill name"
+          />
+          <div *ngIf="skill.get('name')?.invalid && (skill.get('name')?.dirty || skill.get('name')?.touched)">
+            <div *ngIf="skill.get('name')?.errors?.['required']" class="error-message">
+              Skill name is required.
+            </div>
+          </div>
           <!-- Dropdown for selecting skill experience -->
           <select formControlName="experience" class="skill-experience">
             <option value="" disabled selected>Select experience</option>
@@ -55,24 +169,44 @@
             <!-- More options omitted for brevity -->
           </select>
           <!-- Button to delete a skill entry -->
-          <button type="button" class="delete-skill-button" (click)="deleteSkill(i)">
+          <div *ngIf="skill.get('experience')?.invalid && (skill.get('experience')?.dirty || skill.get('experience')?.touched)">
+            <div *ngIf="skill.get('experience')?.errors?.['required']" class="error-message">
+              Experience is required.
+            </div>
+          </div>
+          <button
+            type="button"
+            class="delete-skill-button"
+            (click)="deleteSkill(i)"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </div>
       </div>
       <!-- Gender selection section -->
       <div class="form-group gender-group">
-        <label>Gender:</label>
+        <label class="gender-label">Gender:</label>
         <div class="radio-group">
           <!-- Radio buttons for gender selection -->
           <input type="radio" id="male" formControlName="gender" value="Male" />
-          <label for="male">Male</label>
-          <input type="radio" id="female" formControlName="gender" value="Female" />
+          <label style="margin-bottom: 0px;" for="male">Male</label>
+          <input
+            type="radio"
+            id="female"
+            formControlName="gender"
+            value="Female"
+          />
           <label for="female">Female</label>
         </div>
       </div>
     </div>
     <!-- Submit button, disabled if the form is invalid -->
-    <button type="submit" class="submit-button" [disabled]="!employeeForm.valid">Submit</button>
+    <button
+      type="submit"
+      class="submit-button"
+      [disabled]="!employeeForm.valid"
+    >
+      Submit
+    </button>
   </form>
 </div>

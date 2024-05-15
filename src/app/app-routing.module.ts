@@ -7,11 +7,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/employees', pathMatch: 'full' },
   { path: 'employees', component: EmployeeListComponent },
   { path: 'add', component: EmployeeFormComponent },
-  { path: 'edit/:id', component: EmployeeFormComponent }
+  { path: 'edit/:id', component: EmployeeFormComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

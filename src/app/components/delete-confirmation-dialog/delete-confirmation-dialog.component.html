@@ -1,19 +1,29 @@
-<!-- Content area of the dialog -->
-<mat-dialog-content>
-  <!-- Displays a confirmation message, incorporating the name of the item (employee) to be deleted -->
-  Are you sure you want to delete {{ data.name }}?
-</mat-dialog-content>
+<div class="dialog-header">
+  <h2>Delete</h2>
+  <button mat-icon-button [mat-dialog-close]="false" class="close-btn" type="button">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
 
-<!-- Action buttons area of the dialog -->
-<mat-dialog-actions align="end">
-  <!-- Cancel button: Closes the dialog without taking any action. 
-       [mat-dialog-close]="false" indicates that the dialog is closed with a 'false' result, meaning "do not proceed with delete". -->
-  <button mat-button [mat-dialog-close]="false" cancel-btn>Cancel</button>
-  
-  <!-- Delete button: Closes the dialog and indicates a confirmation to proceed with the deletion.
-       color="warn" applies a theme color that usually indicates a warning or dangerous action, making it visually distinct.
-       [mat-dialog-close]="true" means the dialog closes with a 'true' result, indicating "proceed with delete". -->
-  <button mat-button color="warn" [mat-dialog-close]="true" warn-btn>Delete</button>
+<div class="content-container">
+  <hr class="separator-line" />
+  <mat-dialog-content class="centered-content">
+    Are you sure you want to delete {{ data.name }}?
+  </mat-dialog-content>
+  <hr class="separator-line" />
+</div>
+
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false" class="rounded-button" type="button">
+    Cancel
+  </button>
+  <button
+    mat-button
+    color="warn"
+    [mat-dialog-close]="true"
+    class="rounded-button"
+    type="button"
+  >
+    Delete
+  </button>
 </mat-dialog-actions>
-
-  

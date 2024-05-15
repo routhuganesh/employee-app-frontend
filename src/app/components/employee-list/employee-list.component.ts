@@ -10,20 +10,27 @@ import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.scss']
+  styleUrls: ['./employee-list.component.scss'],
 })
 export class EmployeeListComponent implements OnInit {
   employees!: Employee[]; // Array to hold the list of employees.
-  
+
   // Constructor with injected services: EmployeeService for CRUD operations, Router for navigation, and MatDialog for dialog management.
-  constructor(private employeeService: EmployeeService, private router: Router, public dialog: MatDialog) { }
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     // On component initialization, fetch the list of employees from the EmployeeService.
     this.employees = this.employeeService.getEmployees();
   }
 
-  // Opens a confirmation dialog before deleting an employee.
+  /**
+   * Opens a confirmation dialog for deleting an employee.
+   * @param employee - The employee to be deleted.
+   */
   deleteEmployee(employee: Employee): void {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       width: '300px', // Dialog width.
@@ -32,24 +39,28 @@ export class EmployeeListComponent implements OnInit {
     });
 
     // Subscribes to the dialog close event to receive the result (true if confirmed).
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // If deletion is confirmed, delete the employee and refresh the list.
         this.employeeService.deleteEmployee(employee.id);
         this.employees = this.employeeService.getEmployees(); // Refresh the list after deletion.
         const message = `${employee.name} is deleted successfully.`;
-        console.log(message); // Log message, could be replaced with user-friendly notification logic.
         setTimeout(() => console.log(''), 2000); // Placeholder for hiding the message, suggesting replacement with actual logic.
       }
     });
   }
-  
-  // Navigates to the add employee form.
+
+  /**
+   * Navigates to the add employee form.
+   */
   addEmployee(): void {
     this.router.navigate(['/add']);
   }
 
-  // Navigates to the edit form for the selected employee.
+  /**
+   * Navigates to the edit form for the selected employee.
+   * @param employee employee to edit.
+   */
   editEmployee(employee: Employee): void {
     this.router.navigate(['/edit', employee.id]);
   }
